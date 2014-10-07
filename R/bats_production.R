@@ -34,12 +34,12 @@ process_prod <- function(x){
                      header = FALSE)
   vars <- gsub("\\s+", "", strsplit(xsplit[ ln_data+1 ], ",")[[1]])
   names(data) <- tolower(vars[-length(vars)])
-  vardf <- make_vardf(v=ln_vars, y=ln_quality)
+  vardf <- make_vardf(v=ln_vars, y=ln_quality, z=xsplit)
   list(meta=meta, vars=vardf, data=data)
 }
 
-make_vardf <- function(v, y){
-  tmp <- xsplit[ (v+1):(y-1) ]
+make_vardf <- function(v, y, z){
+  tmp <- z[ (v+1):(y-1) ]
   ln <- tmp[ 9:length(tmp) ]
   tmp <- do.call(rbind, lapply(ln, function(n){
       data.frame(
