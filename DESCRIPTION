@@ -1,10 +1,10 @@
-Package: bats
+Package: ots
 Type: Package
-Title: R client for Bermuda Atlantic Time-Series Study (BATS) datasets.
-Description: Interact with various Bermuda Atlantic Time-Series Study (BATS)
-    datasets.
-Version: 0.0.1
-Date: 2014-10-06
+Title: R client for various ocean time series datasets.
+Description: Interact with various ocean time series datasets, including
+    BATS, HOT, ESTOC, etc.
+Version: 0.0.2
+Date: 2014-10-07
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE

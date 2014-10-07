@@ -1,7 +1,12 @@
-bats
+ots
 =======
 
-`bats` is an R client to retrieve data from the [Bermuda Atlantic Time-Series Study (BATS)]() ftp server.
+`ots` is an R client to retrieve data from various ocean time series datasets, including:
+
+* BATS
+* HOT
+* ESTOC
+* more...
 
 ## Quick start
 
@@ -9,8 +14,8 @@ bats
 
 ```r
 # install.packages("devtools")
-devtools::install_github("sckott/bats")
-library("bats")
+devtools::install_github("sckott/ots")
+library("ots")
 ```
 
 ### BATS - Zooplankton dataset
