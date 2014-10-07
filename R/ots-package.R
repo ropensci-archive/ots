@@ -1,6 +1,6 @@
-#' bats, an R client for ermuda Atlantic Time-Series Study (BATS) datasets.
+#' ots, an R client for various ocean time series datasets.
 #'
-#' @name bats-package
-#' @aliases bats
+#' @name ots-package
+#' @aliases ots
 #' @docType package
 NULL
