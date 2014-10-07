@@ -10,7 +10,9 @@ Get production data from BATS.
 }
 \examples{
 \donttest{
-bats_production()
+(res <- bats_production())
+res$meta
+res$vars
 }
 }
 

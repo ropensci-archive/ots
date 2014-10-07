@@ -3,7 +3,9 @@
 #' @export
 #' 
 #' @examples \donttest{
-#' bats_production()
+#' (res <- bats_production())
+#' res$meta
+#' res$vars
 #' }
 
 bats_production <- function(){
@@ -29,7 +31,7 @@ process_prod <- function(x){
   ln_data <- grep('/Variables', xsplit)
   comm <- paste(xsplit[ ln_comments:(ln_vars-1) ], collapse = "\n")
   qual <- paste(xsplit[ ln_quality:(ln_data-1) ], collapse = "\n")
-  meta <- paste0(comm, "\n", qual)
+  meta <- structure(paste0(comm, "\n", qual), class="meta")
   data <- read.table(text = paste(xsplit[ (ln_data+2):length(xsplit) ], collapse = "\n"), 
                      header = FALSE)
   vars <- gsub("\\s+", "", strsplit(xsplit[ ln_data+1 ], ",")[[1]])

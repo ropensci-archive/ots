@@ -3,7 +3,9 @@
 #' @export
 #' @importFrom RCurl getURL
 #' @examples \donttest{
-#' bats_zooplankton()
+#' (res <- bats_zooplankton())
+#' res$meta
+#' res$vars
 #' }
 
 bats_zooplankton <- function(){
@@ -26,7 +28,7 @@ process_zoo <- function(x){
   ln_bats <- grep('/BATS', xsplit)
   ln_vars <- grep('/Variable list', xsplit)
   ln_data <- grep('/data', xsplit)
-  meta <- paste(xsplit[ ln_bats:(ln_vars-1) ], collapse = "\n")
+  meta <- structure(paste(xsplit[ ln_bats:(ln_vars-1) ], collapse = "\n"), class="meta")
   data <- read.table(text = paste(xsplit[ (ln_data+1):length(xsplit) ], collapse = "\n"), 
                      header = FALSE)
   names(data) <- shortvar
