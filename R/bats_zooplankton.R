@@ -1,5 +1,6 @@
 #' Get zooplankton data from BATS.
 #' 
+#' @export
 #' @importFrom RCurl getURL
 #' @examples \donttest{
 #' res <- bats_zooplankton()
@@ -13,7 +14,6 @@ bats_zooplankton <- function(){
 }
 
 #' @export 
-#' @rdname bats_zooplankton
 print.zooplankton <- function(x, ..., n = 10){
   cat(sprintf("BATS: zooplankton data"), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
