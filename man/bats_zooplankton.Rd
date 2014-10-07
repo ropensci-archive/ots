@@ -4,14 +4,9 @@
 \alias{print.zooplankton}
 \title{Get zooplankton data from BATS.}
 \usage{
-bats_zooplankton(x, ...)
+bats_zooplankton()
 
 \method{print}{zooplankton}(x, ..., n = 10)
-}
-\arguments{
-\item{x}{xxxxxxxxx}
-
-\item{...}{Further args passed on to \code{\link[RCurl]{getURL}}}
 }
 \description{
 Get zooplankton data from BATS.

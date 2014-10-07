@@ -1,14 +1,11 @@
 #' Get zooplankton data from BATS.
 #' 
 #' @importFrom RCurl getURL
-#' 
-#' @param x xxxxxxxxx
-#' @param ... Further args passed on to \code{\link[RCurl]{getURL}}
 #' @examples \donttest{
 #' res <- bats_zooplankton()
 #' }
 
-bats_zooplankton <- function(x, ...){
+bats_zooplankton <- function(){
   url <- paste0(bats_base(), 'zooplankton/bats_zooplankton.txt')
   res <- getURL(url, userpwd = "bats:guest")
   out <- process_zoo(res)
