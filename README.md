@@ -13,7 +13,7 @@ devtools::install_github("sckott/bats")
 library("bats")
 ```
 
-### Zooplankton dataset
+### BATS - Zooplankton dataset
 
 ```r
 bats_zooplankton()
@@ -41,7 +41,7 @@ Variables not shown: weight_wet (dbl), weight_dry (dbl), weight_wet_vol (dbl), d
      tot_weight_dry_vol_200 (dbl)
 ```
 
-### Production dataset
+### BATS - Production dataset
 
 ```r
 bats_production()
@@ -66,5 +66,31 @@ Variables: output$vars
 ..       ...      ...      ...    ...    ...  ...  ...   ...  ...   ...   ...   ...  ...   ...   ...   ...   ...   ...
 ```
 
+### HOT dataset
+
+```r
+hot()
+```
+
+```r
+HOT data
+Metadata: output$meta
+Variables: See Details section in ?hot
+
+   cruise days      date   temp    sal phos  sil     DIC     TA   nDIC    nTA pHmeas_25C pHmeas_insitu pHcalc_25C pHcalc_insitu
+1       1   30 31-Oct-88 26.283 35.186 0.08 0.71 1963.91 2319.5 1953.5 2307.2       -999          -999     8.1292        8.1097
+2       2   62 02-Dec-88 25.659 34.984 0.09 0.99 1958.94 2304.9 1959.8 2306.0       -999          -999     8.1193        8.1092
+3       3   99 08-Jan-89 24.610 35.028 0.07 0.93 1963.77 2305.0 1962.2 2303.2       -999          -999     8.1113        8.1168
+4       4  148 26-Feb-89 23.479 34.883 0.09 0.88 1957.80 2295.5 1964.4 2303.2       -999          -999     8.1091        8.1316
+5       5  177 27-Mar-89 24.278 34.735 0.12 2.01 1946.33 2283.0 1961.2 2300.4       -999          -999     8.1113        8.1218
+6       6  229 18-May-89 23.870 35.019 0.09 1.42 1972.90 2306.7 1971.8 2305.4       -999          -999     8.0993        8.1158
+7       7  266 24-Jun-89 25.755 34.600 0.14 0.92 1939.00 2275.0 1961.4 2301.3       -999          -999     8.1134        8.1018
+8       8  301 29-Jul-89 25.358 34.949 0.10 1.49 1965.65 2301.8 1968.5 2305.2       -999          -999     8.1047        8.0991
+9       9  327 24-Aug-89 26.202 34.675 0.11 1.75 1949.00 2285.4 1967.3 2306.8       -999          -999     8.1113        8.0930
+10     10  356 22-Sep-89 26.330 34.775 0.07 0.90 1944.90 2287.1 1957.5 2301.9       -999          -999     8.1191        8.0990
+..    ...  ...       ...    ...    ...  ...  ...     ...    ...    ...    ...        ...           ...        ...           ...
+Variables not shown: pCO2calc_insitu (dbl), pCO2calc_20C (dbl), aragsatcalc_insitu (dbl), calcsatcalc_insitu (dbl),
+     freeCO2_insitu (dbl), carbonate_insitu (dbl), notes (chr)
+```
 
 ### More coming...
