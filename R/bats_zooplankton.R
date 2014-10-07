@@ -3,7 +3,7 @@
 #' @export
 #' @importFrom RCurl getURL
 #' @examples \donttest{
-#' res <- bats_zooplankton()
+#' bats_zooplankton()
 #' }
 
 bats_zooplankton <- function(){
@@ -36,8 +36,6 @@ process_zoo <- function(x){
   list(meta=meta, vars=vars, data=data)
 }
 
-bats_base <- function() 'ftp://batsftp.bios.edu/BATS/'
-
 shortvar <- c(
   "cruise",
   "date",
@@ -63,5 +61,3 @@ shortvar <- c(
   "tot_weight_wet_vol_200",
   "tot_weight_dry_vol_200"
 )
-
-# gsub("#", "no", gsub("\\s", "_", gsub("[0-9]+)\\s", "", xsplit[ (ln_vars+1):(ln_data-1) ])))

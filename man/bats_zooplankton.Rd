@@ -10,7 +10,7 @@ Get zooplankton data from BATS.
 }
 \examples{
 \donttest{
-res <- bats_zooplankton()
+bats_zooplankton()
 }
 }
 
