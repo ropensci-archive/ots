@@ -2,13 +2,36 @@
 #' 
 #' @import httr
 #' @export
-#' @param which A dataset code name, see \code{\link{kelp_datasets}}
+#' 
+#' @param dataset A dataset code name, see \code{\link{kelp_datasets}}
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
+#' @param name Metadata table name
 #' @details After one download o the dataset, you won't have to download the data again.
+#' 
+#' The \code{kelp} function is to get datasets, e.g., benthic cover data. The output of each call
+#' to \code{kelp} includes the data, and both the headers and variables metadata tables for that 
+#' dataset. In addition, the citation to the data is included. See examples below for how to index
+#' to each of those. 
+#' 
+#' The \code{kelp_datasets} function simply lists the datasets available. You can pass the code
+#' to \code{kelp}. 
+#' 
+#' The \code{kelp_metadata} function is to both list the metadata tables available, and to retrieve
+#' those metadata tables, including: sites, data_updates, metadata_updates, history, and species.
 #' @examples \donttest{
 #' # list of datasets
 #' kelp_datasets()
+#' 
+#' # read in various metadata files
+#' ## list metadata tables
+#' kelp_metadata()
+#' ## get a table
+#' head( kelp_metadata("sites") )
+#' head( kelp_metadata("data_updates") )
+#' head( kelp_metadata("metadata_updates") )
+#' head( kelp_metadata("history") )
+#' head( kelp_metadata("species") )
 #' 
 #' # get data
 #' (res <- kelp("benthic_cover"))
@@ -28,7 +51,7 @@
 #' (res <- kelp("art_recruit"))
 #' }
 
-kelp <- function(which='benthic_cover', path = "~/.ots/kelp", overwrite = TRUE)
+kelp <- function(dataset='benthic_cover', path = "~/.ots/kelp", overwrite = TRUE)
 {
   if(!is_kelp_data(path.expand(file.path(path, "data"))) || 
        !is_kelp_meta(path.expand(file.path(path, "metadata")))){
@@ -36,7 +59,7 @@ kelp <- function(which='benthic_cover', path = "~/.ots/kelp", overwrite = TRUE)
     kelp_GET(path, "metadata/", metadataurl, overwrite) # get metadata
   }
   
-  out <- process_kelp(x=which, base=path)
+  out <- process_kelp(x=dataset, base=path)
   structure(out, class="kelp")
 }
 
@@ -170,6 +193,17 @@ allmetafiles <- c(
 
 #' @export
 #' @rdname kelp
-kelp_datasets <- function(){
-  data.frame(code=names(kelp_files), file=unname(unlist(kelp_files)), stringsAsFactors = FALSE)
+kelp_datasets <- function() list2df(kelp_files)
+
+#' @export
+#' @rdname kelp
+kelp_metadata <- function(name = NULL, path = "~/.ots/kelp"){
+  if(is.null(name)){ list2df(kelp_others) } else {
+    pp <- file.path(path, "metadata", kelp_others[ names(kelp_others) %in% name ][[1]])
+    read_csv(pp)
+  }
+}
+
+list2df <- function(x){
+  data.frame(code=names(x), file=unname(unlist(x)), stringsAsFactors = FALSE)
 }

@@ -2,29 +2,55 @@
 \name{kelp}
 \alias{kelp}
 \alias{kelp_datasets}
+\alias{kelp_metadata}
 \title{Get Kelp forest community data.}
 \usage{
-kelp(which = "benthic_cover", path = "~/.ots/kelp", overwrite = TRUE)
+kelp(dataset = "benthic_cover", path = "~/.ots/kelp", overwrite = TRUE)
 
 kelp_datasets()
+
+kelp_metadata(name = NULL, path = "~/.ots/kelp")
 }
 \arguments{
-\item{which}{A dataset code name, see \code{\link{kelp_datasets}}}
+\item{dataset}{A dataset code name, see \code{\link{kelp_datasets}}}
 
 \item{path}{A path to store the files, Default: \code{~/.ots/kelp}}
 
 \item{overwrite}{(logical) To overwrite the path to store files in or not, Default: TRUE.}
+
+\item{name}{Metadata table name}
 }
 \description{
 Get Kelp forest community data.
 }
 \details{
 After one download o the dataset, you won't have to download the data again.
+
+The \code{kelp} function is to get datasets, e.g., benthic cover data. The output of each call
+to \code{kelp} includes the data, and both the headers and variables metadata tables for that
+dataset. In addition, the citation to the data is included. See examples below for how to index
+to each of those.
+
+The \code{kelp_datasets} function simply lists the datasets available. You can pass the code
+to \code{kelp}.
+
+The \code{kelp_metadata} function is to both list the metadata tables available, and to retrieve
+those metadata tables, including: sites, data_updates, metadata_updates, history, and species.
 }
 \examples{
 \donttest{
 # list of datasets
 kelp_datasets()
+
+# read in various metadata files
+## list metadata tables
+kelp_metadata()
+## get a table
+head( kelp_metadata("sites") )
+head( kelp_metadata("data_updates") )
+head( kelp_metadata("metadata_updates") )
+head( kelp_metadata("history") )
+head( kelp_metadata("species") )
 
 # get data
 (res <- kelp("benthic_cover"))
