@@ -11,4 +11,5 @@ License: MIT + file LICENSE
 Roxygen: list(wrap = FALSE)
 Imports:
     RCurl,
-    httr
+    httr (>= 0.5),
+    data.table
