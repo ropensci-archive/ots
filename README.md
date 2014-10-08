@@ -123,4 +123,35 @@ Dataset variables: output$vars
 ..  ...  ...     ...        ...        ...                ...       ...      ...
 ```
 
+### CALCOFI data
+
+```r
+calcofi('hydro_cast')
+```
+
+```r
+<CALCOFI data>
+Metadata: none yet
+   cst_cnt         cruise_id      cruz_sta dbsta_id                        cast_id      sta_id quarter sta_code distance
+1        1 1949-03-01-C-31CR 9.629490e-311  5400560 19-4903CR-HY-060-0930-05400560 054.0 056.0       1      NST       NA
+2        2 1949-03-01-C-31CR 9.629490e-311  5200750 19-4903CR-HY-060-2112-05200750 052.0 075.0       1      NST       NA
+3        3 1949-03-01-C-31CR 9.629490e-311  5100850 19-4903CR-HY-061-0354-05100850 051.0 085.0       1      NST       NA
+4        4 1949-03-01-C-31CR 9.629490e-311  5000950 19-4903CR-HY-061-1042-05000950 050.0 095.0       1      NST       NA
+5        5 1949-03-01-C-31CR 9.629490e-311  5001040 19-4903CR-HY-061-1706-05001040 050.0 104.0       1      NST       NA
+6        6 1949-03-01-C-31CR 9.629490e-311  4901140 19-4903CR-HY-062-0036-04901140 049.0 114.0       1      NST       NA
+7        7 1949-03-01-C-31CR 9.629490e-311  5671460 19-4903CR-HY-063-0506-05671460 056.7 146.0       1      NST       NA
+8        8 1949-03-01-C-31CR 9.629490e-311  5671360 19-4903CR-HY-063-1154-05671360 056.7 136.0       1      NST       NA
+9        9 1949-03-01-C-31CR 9.629491e-311  5801270 19-4903CR-HY-063-1742-05801270 058.0 127.0       1      NST       NA
+10      10 1949-03-01-C-31CR 9.629491e-311  5901170 19-4903CR-HY-063-2354-05901170 059.0 117.0       1      NST       NA
+..     ...               ...           ...      ...                            ...         ...     ...      ...      ...
+Variables not shown: date (chr), year (int), month (int), julian_date (int), julian_day (int), time (chr), lat_dec (dbl),
+     lat_deg (int), lat_min (dbl), lat_hem (chr), lon_dec (dbl), lon_deg (int), lon_min (dbl), lon_hem (chr), rpt_line (dbl),
+     st_line (dbl), ac_line (dbl), rpt_sta (dbl), st_station (dbl), ac_sta (dbl), bottom_d (int), secchi (int), forelu (int),
+     ship_name (chr), ship_code (chr), data_type (chr), order_occ (int), event_num (int), cruz_leg (int), orig_sta_id (chr),
+     data_or (chr), cruz_num (chr), intchl (dbl), intc14 (dbl), inc_str (chr), inc_end (chr), pst_lan (chr), civil_t (chr),
+     timezone (int), wave_dir (int), wave_ht (int), wave_prd (int), wind_dir (int), wind_spd (int), barometer (dbl), dry_t
+     (dbl), wet_t (dbl), wea (int), cloud_typ (int), cloud_amt (int), visibility (int)
+```
+
+
 ### More coming...
