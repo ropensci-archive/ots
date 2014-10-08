@@ -1,5 +1,6 @@
 #' Get Kelp forest community data.
 #' 
+#' @import httr
 #' @export
 #' @param which A dataset code name, see \code{\link{kelp_datasets}}
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
