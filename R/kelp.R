@@ -101,8 +101,6 @@ process_kelp <- function(x, base){
   list(citation=kelp_citation(), vars=read_csv(vget), headers=read_csv(hget), data=read_csv(dget))
 }
 
-read_csv <- function(x) read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE)
-
 kelp_citation <- function(){
   structure('David J. Kushner, Andrew Rassweiler, John P. McLaughlin, and Kevin D. Lafferty. 2013.
 A multi-decade time series of kelp forest community structure at the California Channel
