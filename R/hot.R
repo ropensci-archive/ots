@@ -87,7 +87,8 @@ process_hot <- function(x){
   list(citation=hot_citation(), meta=meta, vars="See details in ?hot", data=data)
 }
 
-hot_citation <- function()
-structure('Dore, J.E., R. Lukas, D.W. Sadler, M.J. Church, and D.M. Karl. 2009. Physical and 
+hot_citation <- function(){
+  structure('Dore, J.E., R. Lukas, D.W. Sadler, M.J. Church, and D.M. Karl. 2009. Physical and 
 biogeochemical modulation of ocean acidification in the central North Pacific. Proc Natl Acad 
 Sci USA 106:12235-12240.', class="citation")
+}
