@@ -98,4 +98,29 @@ Variables not shown: pCO2calc_insitu (dbl), pCO2calc_20C (dbl), aragsatcalc_insi
      freeCO2_insitu (dbl), carbonate_insitu (dbl), notes (chr)
 ```
 
+### LTER Kelp data
+
+```r
+kelp("benthic_cover")
+```
+
+```r
+<Kelp data>
+Dataset headers: output$headers
+Dataset variables: output$vars
+
+   Site Year Species       Date Replicates PointsPerReplicate CoverMean  CoverSE
+1     1 1982    1001         NA         NA                 NA        NA       NA
+2     1 1982    2001 2-May-1982         25                 20       3.6 1.021437
+3     1 1982    2003         NA         NA                 NA        NA       NA
+4     1 1982    2007 2-May-1982         25                 20       0.4 0.400000
+5     1 1982    2008         NA         NA                 NA        NA       NA
+6     1 1982    2014         NA         NA                 NA        NA       NA
+7     1 1982    2017         NA         NA                 NA        NA       NA
+8     1 1982    3001 2-May-1982         25                 20      52.6 4.682592
+9     1 1982    3002 2-May-1982         25                 20       2.6 1.194432
+10    1 1982    3003 2-May-1982         25                 20       7.2 2.256103
+..  ...  ...     ...        ...        ...                ...       ...      ...
+```
+
 ### More coming...
