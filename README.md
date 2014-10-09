@@ -14,7 +14,7 @@ ots
 
 ```r
 # install.packages("devtools")
-devtools::install_github("sckott/ots")
+devtools::install_github("ropensci/ots")
 library("ots")
 ```
 
