@@ -5,8 +5,11 @@ ots
 
 * BATS
 * HOT
-* ESTOC
-* more...
+* CALCOFI
+* LTER Kelp
+* more to come...
+
+Jump over to the issues page to suggest data sets to include or comment on ongoing data source integration progress.
 
 ## Quick start
 
