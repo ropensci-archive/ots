@@ -1,6 +1,9 @@
 ots
 =======
 
+[![Build Status](https://api.travis-ci.org/ropensci/ots.png)](https://travis-ci.org/ropensci/ots)
+[![Build status](https://ci.appveyor.com/api/projects/status/cad6l6aibktrvau9/branch/master?svg=true)](https://ci.appveyor.com/project/sckott/ots/branch/master)
+
 `ots` is an R client to retrieve data from various ocean time series datasets, including:
 
 * BATS
