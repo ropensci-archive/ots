@@ -10,6 +10,7 @@ ots
 * HOT
 * CALCOFI
 * LTER Kelp
+* UOPG
 * more to come...
 
 Jump over to the issues page to suggest data sets to include or comment on ongoing data source integration progress.
@@ -159,5 +160,31 @@ Variables not shown: date (chr), year (int), month (int), julian_date (int), jul
      (dbl), wet_t (dbl), wea (int), cloud_typ (int), cloud_amt (int), visibility (int)
 ```
 
+### UOPG data
+
+Various datasets available through this source - in this example getting data from Biowatt, and getting the meteorology data. Note that we still need to fix the column names...
+
+```r
+(biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
+```
+
+```r
+<UOPG data : biowatt> Total: [50649 rows]; Datasets: [3]
+Metadata: output$meta
+First dataset [1]:
+
+         V1     V2     V3       V4     V5     V6     V7      V8      V9     V10
+1  59.79427 16.462 42.318 1027.680 18.777 -6.695 -0.087 597.140 -999.99 -999.99
+2  59.79948 16.564 47.506 1027.979 18.773 -6.638 -0.296 641.244 -999.99 -999.99
+3  59.80469 16.698 45.004 1027.680 18.773 -6.792  0.071 539.530 -999.99 -999.99
+4  59.80990 16.611 48.086 1027.680 18.771 -7.056 -0.465 649.147 -999.99 -999.99
+5  59.81510 16.586 47.506 1027.480 18.759 -6.958 -0.241 511.428 -999.99 -999.99
+6  59.82031 16.435 48.260 1027.780 18.762 -6.872  0.096 373.442 -999.99 -999.99
+7  59.82552 16.340 43.019 1027.480 18.753 -6.014 -0.107 316.316 -999.99 -999.99
+8  59.83073 16.387 48.492 1027.381 18.761 -6.208  0.250 410.810 -999.99 -999.99
+9  59.83594 16.497 46.925 1027.281 18.760 -6.176  0.254 400.155 -999.99 -999.99
+10 59.84115 16.358 49.592 1027.680 18.759 -5.610  0.348 232.979 -999.99 -999.99
+..      ...    ...    ...      ...    ...    ...    ...     ...     ...     ...
+```
 
 ### More coming...
