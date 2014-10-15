@@ -10,8 +10,8 @@ print.citation <- function(x, ...){
   cat(x[[1]], sep = "\n")
 }
 
-read_csv <- function(x){
-  tmp <- read.csv(x, header = TRUE, sep = ",", stringsAsFactors=FALSE)
+read_csv <- function(x, header=TRUE){
+  tmp <- read.csv(x, header = header, sep = ",", stringsAsFactors=FALSE)
   names(tmp) <- tolower(names(tmp))
   tmp
 }
