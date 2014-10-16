@@ -105,7 +105,7 @@ Variables not shown: pCO2calc_insitu (dbl), pCO2calc_20C (dbl), aragsatcalc_insi
      freeCO2_insitu (dbl), carbonate_insitu (dbl), notes (chr)
 ```
 
-### LTER Kelp data
+### Channels Islands National Park kelp data
 
 ```r
 kelp("benthic_cover")
