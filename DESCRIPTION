@@ -4,7 +4,7 @@ Title: R client for various ocean time series datasets.
 Description: Interact with various ocean time series datasets, including
     BATS, HOT, and more.
 Version: 0.0.4.99
-Date: 2014-10-15
+Date: 2014-10-27
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
