@@ -1,0 +1,90 @@
+ots
+===
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
+[![Build Status](https://api.travis-ci.org/ropensci/ots.png)](https://travis-ci.org/ropensci/ots)
+[![Build status](https://ci.appveyor.com/api/projects/status/cad6l6aibktrvau9/branch/master?svg=true)](https://ci.appveyor.com/project/sckott/ots/branch/master)
+
+`ots` is an R client to retrieve data from various ocean time series datasets, including:
+
+* BATS
+* HOT
+* CALCOFI
+* LTER Kelp
+* UOPG
+* more to come...
+
+Jump over to the issues page to suggest data sets to include or comment on ongoing data source integration progress.
+
+What's the point of getting data from the web in R? This way we only have to solve the problem of how to efficiently get a dataset once, then you can benefit from that. In addition, this should allow you to get any changes to the dataset that appear, or corrections. Last, getting data programatically in R should get you one step closer to a reproducible workflow, one that makes science easier primarily for yourself, and for others using your work.
+
+## Quick start
+
+### Install
+
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("ropensci/ots")
+```
+
+```{r}
+library("ots")
+```
+
+### Easy integration with dplyr
+
+```{r}
+library('dplyr')
+tbl_df(bats_zooplankton()$data) %>% 
+  filter(sieve_size > 1000) %>% 
+  group_by(cruise) %>% 
+  summarise(mean_water_vol = mean(water_vol))
+```
+
+### BATS - Zooplankton dataset
+
+```{r}
+bats_zooplankton()
+```
+
+### BATS - Production dataset
+
+```{r}
+bats_production()
+```
+
+### HOT dataset
+
+```{r}
+hot()
+```
+
+### Channels Islands National Park kelp data
+
+```{r}
+kelp("benthic_cover")
+```
+
+### CALCOFI data
+
+```{r}
+calcofi('hydro_cast')
+```
+
+### UOPG data
+
+Various datasets available through this source - in this example getting data from Biowatt, and getting the meteorology data. Note that we still need to fix the column names...
+
+```{r}
+(biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
+```
+
+### More coming...
