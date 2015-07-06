@@ -1,10 +1,10 @@
 Package: ots
 Type: Package
-Title: R client for various ocean time series datasets.
-Description: Interact with various ocean time series datasets, including
-    BATS, HOT, and more.
-Version: 0.0.4.999
-Date: 2014-10-27
+Title: Client for Various Ocean Time Series 'Datasets'
+Description: Interact with various ocean time series 'datasets', including
+    BATS, HOT, and more. Functions focus on retrieving data, and all return
+    a data.frame.
+Version: 0.0.5.9000
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
