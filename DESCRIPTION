@@ -17,3 +17,5 @@ Imports:
     RCurl,
     httr (>= 0.5),
     data.table
+Suggests:
+		dplyr
