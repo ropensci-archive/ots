@@ -11,6 +11,7 @@ License: MIT + file LICENSE
 URL: https://github.com/ropensci/ots
 BugReports: https://github.com/ropensci/ots/issues
 Roxygen: list(wrap = FALSE)
+Encoding: UTF-8
 Imports:
     methods,
     utils,
