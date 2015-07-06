@@ -1,60 +1,60 @@
 #' Get Hawaii Ocean Time-series surface CO2 system (HOT) data.
-#' 
+#'
 #' @export
-#' 
-#' @details 
+#'
+#' @details
 #' \itemize{
-#' \item cruise The integer number of the HOT cruise. 
-#' \item days The mid-day of the cruise expressed as the number of days from 1 October 1988. 
-#' \item date The mid-day of the cruise expressed as a calendar date. 
-#' \item temp The mean in situ seawater temperature, in °C. 
-#' \item sal The mean seawater salinity, in practical salinity units. 
-#' \item phos The mean seawater phosphate concentration, in µmol kg-1. 
-#' \item sil The mean seawater silicate concentration, in µmol kg-1. 
-#' \item DIC The mean seawater dissolved inorganic carbon (= total CO2) concentration, in µmol kg-1. 
-#' \item TA The mean seawater total alkalinity, in µeq kg-1. 
-#' \item nDIC The mean seawater salinity-normalized DIC, in µmol kg-1 at salinity = 35. 
-#' \item nTA The mean seawater salinity-normalized TA, in µeq kg-1 at salinity = 35. 
-#' \item pHmeas_25C The mean measured seawater pH at 25 °C, on the total scale. 
-#' \item pHmeas_insitu The mean measured seawater pH, adjusted to in situ temperature, on the total 
-#' scale. 
-#' \item pHcalc_25C The mean seawater pH, calculated from DIC and TA at 25 °C, on the total scale. 
-#' \item pHcalc_insitu The mean seawater pH, calculated from DIC and TA at in situ temperature, on 
-#' the total scale. 
-#' \item pCO2calc_insitu The mean seawater CO2 partial pressure, in µatm, calculated from DIC and 
+#' \item cruise The integer number of the HOT cruise.
+#' \item days The mid-day of the cruise expressed as the number of days from 1 October 1988.
+#' \item date The mid-day of the cruise expressed as a calendar date.
+#' \item temp The mean in situ seawater temperature, in °C.
+#' \item sal The mean seawater salinity, in practical salinity units.
+#' \item phos The mean seawater phosphate concentration, in µmol kg-1.
+#' \item sil The mean seawater silicate concentration, in µmol kg-1.
+#' \item DIC The mean seawater dissolved inorganic carbon (= total CO2) concentration, in µmol kg-1.
+#' \item TA The mean seawater total alkalinity, in µeq kg-1.
+#' \item nDIC The mean seawater salinity-normalized DIC, in µmol kg-1 at salinity = 35.
+#' \item nTA The mean seawater salinity-normalized TA, in µeq kg-1 at salinity = 35.
+#' \item pHmeas_25C The mean measured seawater pH at 25 °C, on the total scale.
+#' \item pHmeas_insitu The mean measured seawater pH, adjusted to in situ temperature, on the total
+#' scale.
+#' \item pHcalc_25C The mean seawater pH, calculated from DIC and TA at 25 °C, on the total scale.
+#' \item pHcalc_insitu The mean seawater pH, calculated from DIC and TA at in situ temperature, on
+#' the total scale.
+#' \item pCO2calc_insitu The mean seawater CO2 partial pressure, in µatm, calculated from DIC and
 #' TA at in situ temperature
-#' \item pCO2calc_20C The mean seawater CO2 partial pressure, in µatm, calculated from DIC and TA 
-#' at 20 °C. 
-#' \item aragsatcalc_insitu The mean seawater aragonite saturation state (solubility ratio). 
-#' \item calcsatcalc_insitu The mean seawater calcite saturation state (solubility ratio). 
-#' \item freeCO2_insitu The mean seawater free CO2 concentration, in µmol kg-1. 
-#' \item carbonate_insitu The mean seawater carbonate ion concentration, in µmol kg-1. 
-#' \item notes This column contains pertinent notes about the data used, especially where sampling 
-#' was different from the HOT standard procedures. The below codes are used to indicate 
-#' such variations. 
+#' \item pCO2calc_20C The mean seawater CO2 partial pressure, in µatm, calculated from DIC and TA
+#' at 20 °C.
+#' \item aragsatcalc_insitu The mean seawater aragonite saturation state (solubility ratio).
+#' \item calcsatcalc_insitu The mean seawater calcite saturation state (solubility ratio).
+#' \item freeCO2_insitu The mean seawater free CO2 concentration, in µmol kg-1.
+#' \item carbonate_insitu The mean seawater carbonate ion concentration, in µmol kg-1.
+#' \item notes This column contains pertinent notes about the data used, especially where sampling
+#' was different from the HOT standard procedures. The below codes are used to indicate
+#' such variations.
 #' }
-#' 
+#'
 #' notes options:
-#' 
+#'
 #' \itemize{
-#' \item a No HOT DIC data; used Keeling DIC 
-#' \item b No HOT TA data; used Keeling TA 
-#' \item c No pH samples collected 
-#' \item d No TA data; assumed nTA of 2303.2 
-#' \item e No DIC data in upper 30 dbar; used value from 34.0 dbar 
-#' \item f No TA data in upper 30 dbar; used value from 51.3 dbar 
-#' \item g Used temp and sal data from downcast before cable broke 
-#' \item h No phos data; assumed 0.07 
-#' \item i No sil data; assumed 1.04 
-#' \item j Rosette lost; samples collected with Go-flo bottle on Kevlar line 
-#' \item k No sampling occurred 
-#' \item l No rosette; samples collected with Niskin bottles on Kevlar line 
-#' \item m No DIC or TA data in upper 30 dbar; used values from 34.9 dbar 
-#' \item n No DIC or TA data in upper 30 dbar; used values from 44.9 dbar 
-#' \item o No DIC, TA or pH sampling occurred in upper 200 dbar 
+#' \item a No HOT DIC data; used Keeling DIC
+#' \item b No HOT TA data; used Keeling TA
+#' \item c No pH samples collected
+#' \item d No TA data; assumed nTA of 2303.2
+#' \item e No DIC data in upper 30 dbar; used value from 34.0 dbar
+#' \item f No TA data in upper 30 dbar; used value from 51.3 dbar
+#' \item g Used temp and sal data from downcast before cable broke
+#' \item h No phos data; assumed 0.07
+#' \item i No sil data; assumed 1.04
+#' \item j Rosette lost; samples collected with Go-flo bottle on Kevlar line
+#' \item k No sampling occurred
+#' \item l No rosette; samples collected with Niskin bottles on Kevlar line
+#' \item m No DIC or TA data in upper 30 dbar; used values from 34.9 dbar
+#' \item n No DIC or TA data in upper 30 dbar; used values from 44.9 dbar
+#' \item o No DIC, TA or pH sampling occurred in upper 200 dbar
 #' \item p No DIC, TA or pH sampling occurred
 #' }
-#' 
+#'
 #' @examples \donttest{
 #' (res <- hot())
 #' res$meta
@@ -69,7 +69,7 @@ hot <- function(){
   structure(out, class="hot")
 }
 
-#' @export 
+#' @export
 print.hot <- function(x, ..., n = 10){
   cat(sprintf("HOT data"), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
@@ -88,7 +88,7 @@ process_hot <- function(x){
 }
 
 hot_citation <- function(){
-  structure('Dore, J.E., R. Lukas, D.W. Sadler, M.J. Church, and D.M. Karl. 2009. Physical and 
-biogeochemical modulation of ocean acidification in the central North Pacific. Proc Natl Acad 
-Sci USA 106:12235-12240.', class="citation")
+  structure('Dore, J.E., R. Lukas, D.W. Sadler, M.J. Church, and D.M. Karl. 2009. Physical and
+biogeochemical modulation of ocean acidification in the central North Pacific. Proc Natl Acad
+Sci USA 106:12235-12240.', class="citations")
 }

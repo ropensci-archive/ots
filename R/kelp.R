@@ -1,28 +1,28 @@
 #' Get Kelp forest community data.
-#' 
+#'
 #' @import httr
 #' @export
-#' 
+#'
 #' @param dataset A dataset code name, see \code{\link{kelp_datasets}}
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #' @param name Metadata table name
 #' @details After one download o the dataset, you won't have to download the data again.
-#' 
+#'
 #' The \code{kelp} function is to get datasets, e.g., benthic cover data. The output of each call
-#' to \code{kelp} includes the data, and both the headers and variables metadata tables for that 
+#' to \code{kelp} includes the data, and both the headers and variables metadata tables for that
 #' dataset. In addition, the citation to the data is included. See examples below for how to index
-#' to each of those. 
-#' 
+#' to each of those.
+#'
 #' The \code{kelp_datasets} function simply lists the datasets available. You can pass the code
-#' to \code{kelp}. 
-#' 
+#' to \code{kelp}.
+#'
 #' The \code{kelp_metadata} function is to both list the metadata tables available, and to retrieve
 #' those metadata tables, including: sites, data_updates, metadata_updates, history, and species.
 #' @examples \donttest{
 #' # list of datasets
 #' kelp_datasets()
-#' 
+#'
 #' # read in various metadata files
 #' ## list metadata tables
 #' kelp_metadata()
@@ -32,13 +32,13 @@
 #' head( kelp_metadata("metadata_updates") )
 #' head( kelp_metadata("history") )
 #' head( kelp_metadata("species") )
-#' 
+#'
 #' # get data
 #' (res <- kelp("benthic_cover"))
 #' head(res$headers)
 #' head(res$vars)
 #' res$citation
-#' 
+#'
 #' (res <- kelp("benthic_density"))
 #' (res <- kelp("fish_density"))
 #' (res <- kelp("fish_size"))
@@ -53,12 +53,12 @@
 
 kelp <- function(dataset='benthic_cover', path = "~/.ots/kelp", overwrite = TRUE)
 {
-  if(!is_kelp_data(path.expand(file.path(path, "data"))) || 
+  if(!is_kelp_data(path.expand(file.path(path, "data"))) ||
        !is_kelp_meta(path.expand(file.path(path, "metadata")))){
     kelp_GET(path, "data/", dataurl, overwrite) # get data
     kelp_GET(path, "metadata/", metadataurl, overwrite) # get metadata
   }
-  
+
   out <- process_kelp(x=dataset, base=path)
   structure(out, class="kelp")
 }
@@ -86,7 +86,7 @@ is_kelp_meta <- function(x){
   }
 }
 
-#' @export 
+#' @export
 print.kelp <- function(x, ..., n = 10){
   cat(sprintf("<Kelp data>"), sep = "\n")
   cat("Dataset headers: output$headers", sep = "\n")
@@ -104,7 +104,7 @@ process_kelp <- function(x, base){
 kelp_citation <- function(){
   structure('David J. Kushner, Andrew Rassweiler, John P. McLaughlin, and Kevin D. Lafferty. 2013.
 A multi-decade time series of kelp forest community structure at the California Channel
-Islands. Ecology 94:2655. http://dx.doi.org/10.1890/13-0562.1', class="citation")
+Islands. Ecology 94:2655. http://dx.doi.org/10.1890/13-0562.1', class="citations")
 }
 
 kelp_files <- structure(list(
@@ -118,7 +118,7 @@ kelp_files <- structure(list(
   "Giant kelp supplementary density data.csv",
   "Invertebrate Size Frequency.csv",
   "RDFC data.csv",
-  "Subtidal temperature data.csv"), 
+  "Subtidal temperature data.csv"),
   names = c('art_recruit','benthic_cover','benthic_density','diverlist','fish_density','fish_size',
             'kelp_size','kelp_supp_dens','invert_size','rdfc','subtidal')
 )
@@ -133,7 +133,7 @@ kelp_hfiles <- structure(list(
   'Table17A_subtidal_temperature_headers.csv',
   'Table4A_benthic_density_headers.csv',
   'Table7A_benthic_cover_headers.csv',
-  'Table9A_fish_density_headers.csv'), 
+  'Table9A_fish_density_headers.csv'),
   names = c('rdfc','fish_size','invert_size','kelp_size','kelp_supp_dens','art_recruit',
             'subtidal','benthic_density','benthic_cover','fish_density')
 )
@@ -148,7 +148,7 @@ kelp_vfiles <- structure(list(
   'Table17B_subtidal_temperature_variables.csv',
   'Table4B_benthic_density_variables.csv',
   'Table7B_benthic_cover_variables.csv',
-  'Table9B_fish_density_variables.csv'), 
+  'Table9B_fish_density_variables.csv'),
   names = c('rdfc','fish_size','invert_size','kelp_size','kelp_supp_dens','art_recruit',
             'subtidal','benthic_density','benthic_cover','fish_density')
 )
@@ -158,7 +158,7 @@ kelp_others <- structure(list(
   'Table18A_data_updates.csv',
   'Table18B_metadata_updates.csv',
   'Table2_History_of_fishing_restrictions.csv',
-  'Table3_Species_monitored.csv'), 
+  'Table3_Species_monitored.csv'),
   names = c('sites','data_updates','metadata_updates','history','species')
 )
 

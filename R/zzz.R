@@ -1,12 +1,12 @@
 bats_base <- function() 'ftp://batsftp.bios.edu/BATS/'
 
-#' @export 
+#' @export
 print.meta <- function(x, ...){
   cat(x, sep = "\n")
 }
 
-#' @export 
-print.citation <- function(x, ...){
+#' @export
+print.citations <- function(x, ...){
   cat(x[[1]], sep = "\n")
 }
 
@@ -16,7 +16,7 @@ read_csv <- function(x, header=TRUE){
   tmp
 }
 
-fread_csv <- function(x){ 
+fread_csv <- function(x){
   tmp <- data.frame(suppressWarnings(fread(x)))
   names(tmp) <- tolower(names(tmp))
   tmp

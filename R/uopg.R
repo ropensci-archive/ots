@@ -1,28 +1,28 @@
 #' Get data from the Upper Ocean Proccesses Group (UOPG).
-#' 
+#'
 #' @export
-#' 
-#' @param dataset A dataset code name, one of arabian_sea, asrex_91, asrex_93, biowatt, cmo, 
+#'
+#' @param dataset A dataset code name, one of arabian_sea, asrex_91, asrex_93, biowatt, cmo,
 #' coare, coop, fasinex, lotus, mlml89, mlml91, sesmoor, smile, or subduction. Or their
 #' unique abbreviations.
 #' @param type A data type, one of meteorology, water_velocity, temperature, or salinity. Or their
 #' unique abbreviations.
 #' @param path A path to store the files, Default: \code{~/.ots/uopg}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
-#' 
+#'
 #' @examples \donttest{
 #' # Smile dataaets
 #' (met <- uopg(dataset = 'smile', type = "meteorology"))
 #' (sal <- uopg(dataset = 'smile', type = "salinity"))
 #' (water <- uopg(dataset = 'smile', type = "water"))
 #' (temp <- uopg(dataset = 'smile', type = "temp"))
-#' 
+#'
 #' # biowatt dataaets
 #' (biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
-#' 
+#'
 #' # lotus datasets
 #' (lotus_met <- uopg(dataset = 'lotus', type = "meteorology"))
-#' 
+#'
 #' # coare datasets
 #' (coare_sal <- uopg(dataset = 'coare', type = "salinity"))
 #' }
@@ -32,7 +32,7 @@ uopg <- function(dataset = 'smile', type = "meteorology", path = "~/.ots/uopg", 
   type <- match.arg(type, c('meteorology','water_velocity','temperature','salinity'))
   zpath <- switch(type, meteorology = "met", water_velocity = "vel", temperature = "temp", salinity = "sal")
   files <- get_files(dataset, type)
-  
+
   if( !is_uopg( x = path.expand(file.path(path, dataset, zpath)), y=files ) ){
     invisible(lapply(files, function(m) uopg_GET(path, dataset, zpath, files = m, overwrite = overwrite)))
     invisible(lapply(files, function(k) uopg_GET(path, dataset, zpath, files = k, ext=".meta", overwrite)))
@@ -41,7 +41,7 @@ uopg <- function(dataset = 'smile', type = "meteorology", path = "~/.ots/uopg", 
   structure(out, class="uopg", dataset=dataset, type=type, path=path)
 }
 
-#' @export 
+#' @export
 print.uopg <- function(x, ..., n = 10){
   cat(sprintf("<UOPG data : %s> Total: [%s rows]; Datasets: [%s]", attr(x, "dataset"), sumnrow(x$data), length(x$data)), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
@@ -49,7 +49,7 @@ print.uopg <- function(x, ..., n = 10){
   trunc_mat(x$data[[1]], n = n)
 }
 
-#' @export 
+#' @export
 print.uopg_meta <- function(x, ...){
   cat("\n")
   cat(x)
@@ -75,7 +75,7 @@ process_uopg <- function(dataset, path, zpath, files){
 }
 
 uopg_citation <- function(){
-  structure('coming soon...', class="citation")
+  structure('coming soon...', class="citations")
 }
 
 get_uopg <- function(x, y){
@@ -99,9 +99,9 @@ is_uopg <- function(x, y){
 }
 
 get_files <- function(x, y){
-  switch(paste0(x, "_", y), 
-         smile_meteorology = "smilemet", 
-         smile_water_velocity = c("smileC2vel","smileC3vel","smileC4vel","smileG3vel","smileM3vel"), 
+  switch(paste0(x, "_", y),
+         smile_meteorology = "smilemet",
+         smile_water_velocity = c("smileC2vel","smileC3vel","smileC4vel","smileG3vel","smileM3vel"),
          smile_temperature = c("smileG3temp","smileC2temp","smileC3temp","smileC4temp","smileM3temp"),
          smile_salinity = "smileC3sal",
          biowatt_meteorology = c("biowatt1met","biowatt2met","biowatt3met"),
@@ -120,5 +120,5 @@ get_files <- function(x, y){
 uopg_base <- function() 'http://uop.whoi.edu/archives'
 
 uopg_datasets <- c('arabian_sea', 'asrex_91', 'asrex_93', 'biowatt', 'cmo', 'coare',
-                   'coop', 'fasinex', 'lotus', 'mlml89', 'mlml91', 'sesmoor', 
+                   'coop', 'fasinex', 'lotus', 'mlml89', 'mlml91', 'sesmoor',
                    'smile', 'subduction')

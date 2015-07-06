@@ -1,23 +1,23 @@
 #' Get California Cooperative Oceanic Fisheries Investigations (CALCOFI) data.
-#' 
+#'
 #' FIXME: need to support other data sets in CALCOFI
-#' 
+#'
 #' @importFrom data.table fread
 #' @export
-#' 
+#'
 #' @param dataset A dataset code name, one of hydro, macrozoo, or X
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
-#' 
+#'
 #' @examples \donttest{
 #' # hydro cast data
 #' (res <- calcofi('hydro_cast'))
-#' 
+#'
 #' # hydro bottle data
 #' (res <- calcofi('hydro_bottle'))
-#' 
+#'
 #' library('dplyr')
-#' res$data %>% 
+#' res$data %>%
 #'  tbl_df %>%
 #'  select(-cruz_sta) %>%
 #'  group_by(year) %>%
@@ -36,7 +36,7 @@ calcofi <- function(dataset='hydro_cast', path = "~/.ots/calcofi", overwrite = T
   structure(out, class="calcofi")
 }
 
-#' @export 
+#' @export
 print.calcofi <- function(x, ..., n = 10){
   cat(sprintf("<CALCOFI data>"), sep = "\n")
   cat("Metadata: none yet", sep = "\n")
@@ -59,7 +59,7 @@ process_calcofi <- function(x, base, zpath){
 }
 
 calcofi_citation <- function(){
-  structure('coming soon...', class="citation")
+  structure('coming soon...', class="citations")
 }
 
 is_calcofi <- function(x){
