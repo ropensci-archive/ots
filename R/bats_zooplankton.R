@@ -1,7 +1,7 @@
 #' Get zooplankton data from BATS.
-#' 
+#'
 #' @export
-#' @importFrom RCurl getURL
+#' @importFrom curl curl_download
 #' @examples \donttest{
 #' (res <- bats_zooplankton())
 #' res$meta
@@ -10,12 +10,13 @@
 
 bats_zooplankton <- function(){
   url <- paste0(bats_base(), 'zooplankton/bats_zooplankton.txt')
-  res <- getURL(url, userpwd = "bats:guest")
-  out <- process_zoo(res)
-  structure(out, class="zooplankton")
+  url <- sub("ftp://", "ftp://bats:guest@", url)
+  res <- curl::curl_download(url, tfile <- tempfile(fileext = ".txt"))
+  out <- process_zoo(paste0(readLines(res), collapse = "\n"))
+  structure(out, class = "zooplankton")
 }
 
-#' @export 
+#' @export
 print.zooplankton <- function(x, ..., n = 10){
   cat(sprintf("BATS: zooplankton data"), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
@@ -28,14 +29,14 @@ process_zoo <- function(x){
   ln_bats <- grep('/BATS', xsplit)
   ln_vars <- grep('/Variable list', xsplit)
   ln_data <- grep('/data', xsplit)
-  meta <- structure(paste(xsplit[ ln_bats:(ln_vars-1) ], collapse = "\n"), class="meta")
-  data <- read.table(text = paste(xsplit[ (ln_data+1):length(xsplit) ], collapse = "\n"), 
+  meta <- structure(paste(xsplit[ ln_bats:(ln_vars - 1) ], collapse = "\n"), class = "meta")
+  data <- read.table(text = paste(xsplit[ (ln_data + 1):length(xsplit) ], collapse = "\n"),
                      header = FALSE)
   names(data) <- shortvar
-  vars <- data.frame(shortvar=shortvar, 
-                     var=gsub("[0-9]+)\\s", "", xsplit[ (ln_vars+1):(ln_data-1) ]),
+  vars <- data.frame(shortvar = shortvar,
+                     var = gsub("[0-9]+)\\s", "", xsplit[ (ln_vars + 1):(ln_data - 1) ]),
                      stringsAsFactors = FALSE)
-  list(meta=meta, vars=vars, data=data)
+  list(meta = meta, vars = vars, data = data)
 }
 
 shortvar <- c(

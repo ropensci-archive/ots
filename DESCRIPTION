@@ -15,8 +15,8 @@ Encoding: UTF-8
 Imports:
     methods,
     utils,
-    RCurl,
-    httr (>= 0.5),
+    curl,
+    httr (>= 1.0.0),
     data.table
 Suggests:
 		dplyr

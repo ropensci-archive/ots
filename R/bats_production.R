@@ -1,7 +1,7 @@
 #' Get production data from BATS.
-#' 
+#'
 #' @export
-#' 
+#'
 #' @examples \donttest{
 #' (res <- bats_production())
 #' res$meta
@@ -10,12 +10,13 @@
 
 bats_production <- function(){
   url <- paste0(bats_base(), 'production/bats_production.dat')
-  res <- getURL(url, userpwd = "bats:guest")
-  out <- process_prod(res)
-  structure(out, class="production")
+  url <- sub("ftp://", "ftp://bats:guest@", url)
+  res <- curl::curl_download(url, tfile <- tempfile(fileext = ".txt"))
+  out <- process_prod(paste0(readLines(res), collapse = "\n"))
+  structure(out, class = "production")
 }
 
-#' @export 
+#' @export
 print.production <- function(x, ..., n = 10){
   cat(sprintf("BATS: primary/bacterial production data"), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
@@ -32,7 +33,7 @@ process_prod <- function(x){
   comm <- paste(xsplit[ ln_comments:(ln_vars-1) ], collapse = "\n")
   qual <- paste(xsplit[ ln_quality:(ln_data-1) ], collapse = "\n")
   meta <- structure(paste0(comm, "\n", qual), class="meta")
-  data <- read.table(text = paste(xsplit[ (ln_data+2):length(xsplit) ], collapse = "\n"), 
+  data <- read.table(text = paste(xsplit[ (ln_data+2):length(xsplit) ], collapse = "\n"),
                      header = FALSE)
   vars <- gsub("\\s+", "", strsplit(xsplit[ ln_data+1 ], ",")[[1]])
   names(data) <- tolower(vars[-length(vars)])
@@ -45,9 +46,9 @@ make_vardf <- function(v, y, z){
   ln <- tmp[ 9:length(tmp) ]
   tmp <- do.call(rbind, lapply(ln, function(n){
       data.frame(
-        t(gsub("^\\s+|\\s+$", "", strsplit(n, "\\s+=\\s+")[[1]])), 
+        t(gsub("^\\s+|\\s+$", "", strsplit(n, "\\s+=\\s+")[[1]])),
         stringsAsFactors = FALSE)
-    }) 
+    })
   )
   names(tmp) <- c('variable','description')
   tmp$variable <- tolower(tmp$variable)

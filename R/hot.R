@@ -64,9 +64,9 @@
 
 hot <- function(){
   url <- 'http://hahana.soest.hawaii.edu/hot/products/HOT_surface_CO2.txt'
-  res <- getURL(url)
-  out <- process_hot(res)
-  structure(out, class="hot")
+  res <- GET(url)
+  out <- process_hot(content(res, "text"))
+  structure(out, class = "hot")
 }
 
 #' @export
@@ -81,14 +81,14 @@ process_hot <- function(x){
   xsplit <- strsplit(x, "\r\n")[[1]]
   ln_meta <- xsplit[1:7]
   ln_data <- xsplit[9:length(xsplit)]
-  meta <- structure(paste0(gsub("\t", "", ln_meta), collapse = "\n"), class="meta")
+  meta <- structure(paste0(gsub("\t", "", ln_meta), collapse = "\n"), class = "meta")
   data <- read.table(text = paste(ln_data, collapse = "\n"), sep = "\t",
                      header = TRUE, stringsAsFactors = FALSE)
-  list(citation=hot_citation(), meta=meta, vars="See details in ?hot", data=data)
+  list(citation = hot_citation(), meta = meta, vars = "See details in ?hot", data = data)
 }
 
 hot_citation <- function(){
   structure('Dore, J.E., R. Lukas, D.W. Sadler, M.J. Church, and D.M. Karl. 2009. Physical and
 biogeochemical modulation of ocean acidification in the central North Pacific. Proc Natl Acad
-Sci USA 106:12235-12240.', class="citations")
+Sci USA 106:12235-12240.', class = "citations")
 }

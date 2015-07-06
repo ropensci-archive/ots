@@ -1,6 +1,5 @@
 #' Get Kelp forest community data.
 #'
-#' @import httr
 #' @export
 #'
 #' @param dataset A dataset code name, see \code{\link{kelp_datasets}}
