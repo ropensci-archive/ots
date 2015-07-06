@@ -19,11 +19,7 @@ Jump over to the issues page to suggest data sets to include or comment on ongoi
 
 What's the point of getting data from the web in R? This way we only have to solve the problem of how to efficiently get a dataset once, then you can benefit from that. In addition, this should allow you to get any changes to the dataset that appear, or corrections. Last, getting data programatically in R should get you one step closer to a reproducible workflow, one that makes science easier primarily for yourself, and for others using your work.
 
-
-
-## Quick start
-
-### Install
+## Install
 
 
 ```r
@@ -36,17 +32,17 @@ devtools::install_github("ropensci/ots")
 library("ots")
 ```
 
-### Easy integration with dplyr
+## Easy integration with dplyr
 
 
 ```r
 library('dplyr')
-tbl_df(bats_zooplankton()$data) %>%
-  filter(sieve_size > 1000) %>%
-  group_by(cruise) %>%
+tbl_df(bats_zooplankton()$data) %>% 
+  filter(sieve_size > 1000) %>% 
+  group_by(cruise) %>% 
   summarise(mean_water_vol = mean(water_vol))
 #> Source: local data frame [227 x 2]
-#>
+#> 
 #>    cruise mean_water_vol
 #> 1   10067       304.2962
 #> 2   10068       457.0975
@@ -61,7 +57,7 @@ tbl_df(bats_zooplankton()$data) %>%
 #> ..    ...            ...
 ```
 
-### BATS - Zooplankton dataset
+## BATS - Zooplankton dataset
 
 
 ```r
@@ -69,7 +65,7 @@ bats_zooplankton()
 #> BATS: zooplankton data
 #> Metadata: output$meta
 #> Variables: output$vars
-#>
+#> 
 #>    cruise     date tow lat_deg lat_min lon_deg lon_min time_in time_out
 #> 1   20066 19940406   1      31   33.89      63   52.45    1558     1626
 #> 2   20066 19940406   1      31   33.89      63   52.45    1558     1626
@@ -90,7 +86,7 @@ bats_zooplankton()
 #>      tot_weight_dry_vol_200 (dbl)
 ```
 
-### BATS - Production dataset
+## BATS - Production dataset
 
 
 ```r
@@ -98,7 +94,7 @@ bats_production()
 #> BATS: primary/bacterial production data
 #> Metadata: output$meta
 #> Variables: output$vars
-#>
+#> 
 #>           id   yymmdd     decy    lat   long dep1 dep2  salt  lt1   lt2
 #> 1  100038101 19881218 1988.965 31.669 64.049    5    5 -9.99 7.21  6.59
 #> 2  100038102 19881218 1988.965 31.669 64.049   25   25 -9.99 6.00 -9.90
@@ -115,7 +111,7 @@ bats_production()
 #>      (dbl), thy2 (dbl), thy3 (dbl), thy (dbl)
 ```
 
-### HOT dataset
+## HOT dataset
 
 
 ```r
@@ -123,7 +119,7 @@ hot()
 #> HOT data
 #> Metadata: output$meta
 #> Variables: See Details section in ?hot
-#>
+#> 
 #>    cruise days      date   temp    sal phos  sil     DIC     TA   nDIC
 #> 1       1   30 31-Oct-88 26.283 35.186 0.08 0.71 1963.91 2319.5 1953.5
 #> 2       2   62 02-Dec-88 25.659 34.984 0.09 0.99 1958.94 2304.9 1959.8
@@ -142,7 +138,7 @@ hot()
 #>      (dbl), freeCO2_insitu (dbl), carbonate_insitu (dbl), notes (chr)
 ```
 
-### Channels Islands National Park kelp data
+## Channels Islands National Park kelp data
 
 
 ```r
@@ -150,7 +146,7 @@ kelp("benthic_cover")
 #> <Kelp data>
 #> Dataset headers: output$headers
 #> Dataset variables: output$vars
-#>
+#> 
 #>    site year species       date replicates pointsperreplicate covermean
 #> 1     1 1982    1001         NA         NA                 NA        NA
 #> 2     1 1982    2001 2-May-1982         25                 20       3.6
@@ -166,7 +162,7 @@ kelp("benthic_cover")
 #> Variables not shown: coverse (dbl)
 ```
 
-### CALCOFI data
+## CALCOFI data
 
 
 ```r
@@ -201,7 +197,7 @@ calcofi('hydro_cast')
 #>      (int), visibility (int)
 ```
 
-### UOPG data
+## UOPG data
 
 Various datasets available through this source - in this example getting data from Biowatt, and getting the meteorology data. Note that we still need to fix the column names...
 
@@ -211,7 +207,7 @@ Various datasets available through this source - in this example getting data fr
 #> <UOPG data : biowatt> Total: [50649 rows]; Datasets: [3]
 #> Metadata: output$meta
 #> First dataset [1]:
-#>
+#> 
 #>          V1     V2     V3       V4     V5     V6     V7      V8      V9
 #> 1  59.79427 16.462 42.318 1027.680 18.777 -6.695 -0.087 597.140 -999.99
 #> 2  59.79948 16.564 47.506 1027.979 18.773 -6.638 -0.296 641.244 -999.99
@@ -227,4 +223,12 @@ Various datasets available through this source - in this example getting data fr
 #> Variables not shown: V10 (dbl)
 ```
 
-### More coming...
+## More coming...
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropensci/ots/issues).
+* License: MIT
+* Get citation information for `ots` in R doing `citation(package = 'ots')`
+
+[![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
