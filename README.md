@@ -230,5 +230,6 @@ Various datasets available through this source - in this example getting data fr
 * Please [report any issues or bugs](https://github.com/ropensci/ots/issues).
 * License: MIT
 * Get citation information for `ots` in R doing `citation(package = 'ots')`
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 [![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
