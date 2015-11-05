@@ -2,22 +2,23 @@ Package: ots
 Type: Package
 Title: Client for Various Ocean Time Series 'Datasets'
 Description: Interact with various ocean time series 'datasets', including
-    BATS, HOT, and more. Functions focus on retrieving data, and all return
-    a data.frame.
-Version: 0.0.6.9000
+    BATS, HOT, and more. Package focuses on data retrieval only. All functions
+    return a data.frame for easy downstream use for plots, vizualization,
+    analysis.
+Version: 0.0.7.9000
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
 URL: https://github.com/ropensci/ots
 BugReports: https://github.com/ropensci/ots/issues
-Roxygen: list(wrap = FALSE)
 Encoding: UTF-8
 Imports:
     methods,
     utils,
     curl,
     httr (>= 1.0.0),
-    data.table
+    data.table,
+    ncdf
 Suggests:
     dplyr
 RoxygenNote: 5.0.0

@@ -22,6 +22,10 @@ unique abbreviations.}
 \description{
 Get data from the Upper Ocean Proccesses Group (UOPG).
 }
+\details{
+We download NetCDF files from UOPG, using \pkg{ncdf} to parse the data
+to a data.frame.
+}
 \examples{
 \dontrun{
 # Smile dataaets
@@ -32,9 +36,12 @@ Get data from the Upper Ocean Proccesses Group (UOPG).
 
 # biowatt dataaets
 (biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
+biowatt_met$data$`1`
 
 # lotus datasets
 (lotus_met <- uopg(dataset = 'lotus', type = "meteorology"))
+lotus_met$data$lotus
+lotus_met$metadata
 
 # coare datasets
 (coare_sal <- uopg(dataset = 'coare', type = "salinity"))

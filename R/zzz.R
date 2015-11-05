@@ -21,3 +21,5 @@ fread_csv <- function(x){
   names(tmp) <- tolower(names(tmp))
   tmp
 }
+
+cmp <- function(l) Filter(Negate(is.null), l)

@@ -9,6 +9,9 @@
 #' @param path A path to store the files, Default: \code{~/.ots/uopg}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #'
+#' @details We download NetCDF files from UOPG, using \pkg{ncdf} to parse the data
+#' to a data.frame.
+#'
 #' @examples \dontrun{
 #' # Smile dataaets
 #' (met <- uopg(dataset = 'smile', type = "meteorology"))
@@ -18,9 +21,12 @@
 #'
 #' # biowatt dataaets
 #' (biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
+#' biowatt_met$data$`1`
 #'
 #' # lotus datasets
 #' (lotus_met <- uopg(dataset = 'lotus', type = "meteorology"))
+#' lotus_met$data$lotus
+#' lotus_met$metadata
 #'
 #' # coare datasets
 #' (coare_sal <- uopg(dataset = 'coare', type = "salinity"))
@@ -32,32 +38,39 @@ uopg <- function(dataset = 'smile', type = "meteorology", path = "~/.ots/uopg", 
   zpath <- switch(type, meteorology = "met", water_velocity = "vel", temperature = "temp", salinity = "sal")
   files <- get_files(dataset, type)
 
-  if( !is_uopg( x = path.expand(file.path(path, dataset, zpath)), y=files ) ){
+  if ( !is_uopg( x = path.expand(file.path(path, dataset, zpath)), y = files ) ) {
     invisible(lapply(files, function(m) uopg_GET(path, dataset, zpath, files = m, overwrite = overwrite)))
-    invisible(lapply(files, function(k) uopg_GET(path, dataset, zpath, files = k, ext=".meta", overwrite)))
+    invisible(lapply(files, function(k) uopg_GET(path, dataset, zpath, files = k, ext = ".meta", overwrite)))
   }
-  out <- process_uopg(dataset=dataset, path=path, zpath=zpath, files=files)
-  structure(out, class="uopg", dataset=dataset, type=type, path=path)
+  out <- process_uopg(dataset = dataset, path = path, zpath = zpath, files = files)
+  structure(out, class = "uopg", dataset = dataset, type = type, path = path)
 }
 
 #' @export
 print.uopg <- function(x, ..., n = 10){
   cat(sprintf("<UOPG data : %s> Total: [%s rows]; Datasets: [%s]", attr(x, "dataset"), sumnrow(x$data), length(x$data)), sep = "\n")
   cat("Metadata: output$meta", sep = "\n")
-  cat(sprintf("First dataset [%s]:\n", names(x$data)[[1]]), sep="\n")
-  trunc_mat(x$data[[1]], n = n)
+  cat(sprintf("First dataset [%s]:\n", names(x$data)[[1]]), sep = "\n")
+  trunc_mat(x$data[[1]]$data, n = n)
+}
+
+#' @export
+print.uopg_one <- function(x, ..., n = 10){
+  cat(sprintf("<UOPG data> [%s rows]", NROW(x$data)), sep = "\n")
+  cat("Metadata: output$meta", sep = "\n")
+  trunc_mat(x$data, n = n)
 }
 
 #' @export
 print.uopg_meta <- function(x, ...){
-  cat("\n")
   cat(x)
+  cat("\n")
 }
 
 sumnrow <- function(x) sum(sapply(x, NROW))
 sumncol <- function(x) sum(sapply(x, NCOL))
 
-uopg_GET <- function(bp, dataset, zpath, files, ext=".asc.gz", overwrite){
+uopg_GET <- function(bp, dataset, zpath, files, ext=".epic", overwrite){
   dirpath <- file.path(bp, dataset, zpath)
   dir.create(dirpath, showWarnings = FALSE, recursive = TRUE)
   fp <- file.path(dirpath, paste0(files, ext))
@@ -66,32 +79,35 @@ uopg_GET <- function(bp, dataset, zpath, files, ext=".asc.gz", overwrite){
 }
 
 process_uopg <- function(dataset, path, zpath, files){
-  get <- file.path(path, dataset, zpath, paste0(files, ".asc.gz"))
+  get <- file.path(path, dataset, zpath, paste0(files, ".epic"))
   metaget <- file.path(path, dataset, zpath, paste0(files, ".meta"))
   namez <- gsub(paste(dataset, zpath, sep = "|"), "", files)
-  namez <- if(nchar(namez[[1]]) == 0) dataset else namez
-  list(citation=uopg_citation(), data=get_uopg(get, namez), metadata=read_meta(metaget, namez))
+  namez <- if (nchar(namez[[1]]) == 0) dataset else namez
+  list(citation = uopg_citation(),
+       data = get_uopg(x = get, y = namez),
+       metadata = read_meta(x = metaget, y = namez))
 }
 
 uopg_citation <- function(){
-  structure('coming soon...', class="citations")
+  structure('coming soon...', class = "citations")
 }
 
 get_uopg <- function(x, y){
-  tabs <- lapply(x, read.table, header = FALSE)
-  names(tabs) <- y
-  tabs
+  tabs <- lapply(x, function(z) structure(list(data = ncdf2df(z)), class = "uopg_one"))
+  setNames(tabs, y)
 }
 
 read_meta <- function(x, y){
-  metas <- lapply(x, function(v) structure(paste0(readLines(v, warn = FALSE), collapse = "\n"), class="uopg_meta"))
-  names(metas) <- y
-  metas
+  metas <- lapply(x, function(v) structure(paste0(readLines(v, warn = FALSE), collapse = "\n"),
+                                           class = "uopg_meta"))
+  setNames(metas, y)
 }
 
 is_uopg <- function(x, y){
-  if(identical(list.files(x), character(0))){ FALSE } else {
-    if( all( sapply(paste0(y, '.asc.gz'), function(z) grepl(z, list.files(x))) ) &&
+  if (identical(list.files(x), character(0))) {
+    FALSE
+  } else {
+    if ( all( sapply(paste0(y, '.epic'), function(z) grepl(z, list.files(x))) ) &&
         all( sapply(paste0(y, '.meta'), function(z) grepl(z, list.files(x))) )
     ) TRUE else FALSE
   }
