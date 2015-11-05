@@ -1,7 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-cran-comments.md
-README.Rmd
-appveyor.yml
-.travis.yml
+^\.travis\.yml$
+^cran-comments\.md$
+^README.Rmd$
+^appveyor\.yml$
 ^CONDUCT\.md$
+^NEWS\.md$
