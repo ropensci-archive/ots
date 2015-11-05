@@ -17,6 +17,7 @@
 #'
 #' The \code{kelp_metadata} function is to both list the metadata tables available, and to retrieve
 #' those metadata tables, including: sites, data_updates, metadata_updates, history, and species.
+#' @references \url{http://esapubs.org/archive/ecol/E094/245/metadata.php}
 #' @examples \dontrun{
 #' # list of datasets
 #' kelp_datasets()

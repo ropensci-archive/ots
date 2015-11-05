@@ -47,4 +47,7 @@ lotus_met$metadata
 (coare_sal <- uopg(dataset = 'coare', type = "salinity"))
 }
 }
+\references{
+\url{http://uop.whoi.edu/archives/dataarchives.html}
+}
 

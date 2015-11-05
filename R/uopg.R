@@ -12,6 +12,8 @@
 #' @details We download NetCDF files from UOPG, using \pkg{ncdf} to parse the data
 #' to a data.frame.
 #'
+#' @references \url{http://uop.whoi.edu/archives/dataarchives.html}
+#'
 #' @examples \dontrun{
 #' # Smile dataaets
 #' (met <- uopg(dataset = 'smile', type = "meteorology"))
