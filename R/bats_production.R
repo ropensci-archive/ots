@@ -1,8 +1,7 @@
 #' Get production data from BATS.
 #'
 #' @export
-#'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' (res <- bats_production())
 #' res$meta
 #' res$vars

@@ -1,7 +1,6 @@
 #' Get data from the Upper Ocean Proccesses Group (UOPG).
 #'
 #' @export
-#'
 #' @param dataset A dataset code name, one of arabian_sea, asrex_91, asrex_93, biowatt, cmo,
 #' coare, coop, fasinex, lotus, mlml89, mlml91, sesmoor, smile, or subduction. Or their
 #' unique abbreviations.
@@ -10,7 +9,7 @@
 #' @param path A path to store the files, Default: \code{~/.ots/uopg}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # Smile dataaets
 #' (met <- uopg(dataset = 'smile', type = "meteorology"))
 #' (sal <- uopg(dataset = 'smile', type = "salinity"))

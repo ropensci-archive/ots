@@ -1,7 +1,6 @@
 #' Get Kelp forest community data.
 #'
 #' @export
-#'
 #' @param dataset A dataset code name, see \code{\link{kelp_datasets}}
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
@@ -18,7 +17,7 @@
 #'
 #' The \code{kelp_metadata} function is to both list the metadata tables available, and to retrieve
 #' those metadata tables, including: sites, data_updates, metadata_updates, history, and species.
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # list of datasets
 #' kelp_datasets()
 #'

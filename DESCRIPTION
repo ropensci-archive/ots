@@ -19,4 +19,5 @@ Imports:
     httr (>= 1.0.0),
     data.table
 Suggests:
-		dplyr
+    dplyr
+RoxygenNote: 5.0.0

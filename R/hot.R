@@ -1,7 +1,6 @@
 #' Get Hawaii Ocean Time-series surface CO2 system (HOT) data.
 #'
 #' @export
-#'
 #' @details
 #' \itemize{
 #' \item cruise The integer number of the HOT cruise.
@@ -55,7 +54,7 @@
 #' \item p No DIC, TA or pH sampling occurred
 #' }
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' (res <- hot())
 #' res$meta
 #' res$vars

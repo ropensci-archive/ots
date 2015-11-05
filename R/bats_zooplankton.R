@@ -2,7 +2,7 @@
 #'
 #' @export
 #' @importFrom curl curl_download
-#' @examples \donttest{
+#' @examples \dontrun{
 #' (res <- bats_zooplankton())
 #' res$meta
 #' res$vars

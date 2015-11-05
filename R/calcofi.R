@@ -4,12 +4,11 @@
 #'
 #' @importFrom data.table fread
 #' @export
-#'
 #' @param dataset A dataset code name, one of hydro, macrozoo, or X
 #' @param path A path to store the files, Default: \code{~/.ots/kelp}
 #' @param overwrite (logical) To overwrite the path to store files in or not, Default: TRUE.
 #'
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # hydro cast data
 #' (res <- calcofi('hydro_cast'))
 #'
