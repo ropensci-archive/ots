@@ -15,6 +15,7 @@ Encoding: UTF-8
 Imports:
     methods,
     utils,
+    stats,
     curl,
     httr (>= 1.0.0),
     data.table,
