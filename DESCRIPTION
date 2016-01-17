@@ -5,7 +5,7 @@ Description: Interact with various ocean time series 'datasets', including
     BATS, HOT, and more. Package focuses on data retrieval only. All functions
     return a data.frame for easy downstream use for plots, vizualization,
     analysis.
-Version: 0.0.7.9400
+Version: 0.0.8.9000
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -18,7 +18,7 @@ Imports:
     curl,
     httr (>= 1.0.0),
     data.table,
-    ncdf
+    ncdf4
 Suggests:
     dplyr
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1

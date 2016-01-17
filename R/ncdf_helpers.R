@@ -1,17 +1,17 @@
-# - copied from rerddap package
-# make data.frame from ncdf file
 ncdf2df <- function(file){
-  nc <- ncdf::open.ncdf(file)
+  nc <- ncdf4::nc_open(file)
+  on.exit(ncdf4::nc_close(nc))
+
   dims <- names(nc$dim)
   out <- list()
   for (i in seq_along(dims)) {
-    out[[dims[i]]] <- ncdf::get.var.ncdf(nc, nc$dim[[dims[i]]])
+    out[[dims[i]]] <- ncdf4::ncvar_get(nc, nc$dim[[dims[i]]])
   }
   out$time <- sapply(out$time, convert_time)
   vars <- names(nc$var)
   outvars <- list()
   for (i in seq_along(vars)) {
-    outvars[[ vars[i] ]] <- as.vector(ncdf::get.var.ncdf(nc, vars[i]))
+    outvars[[ vars[i] ]] <- as.vector(ncdf4::ncvar_get(nc, vars[i]))
   }
   df <- do.call("cbind.data.frame", outvars)
   rows <- length(outvars[[1]])
@@ -19,9 +19,7 @@ ncdf2df <- function(file){
   lat <- rep(rep(out$lat, each = length(out$lon)), length(out$time))
   lon <- rep(rep(out$lon, times = length(out$lat)), times = length(out$time))
   meta <- data.frame(time, lat, lon, stringsAsFactors = FALSE)
-  alldf <- cbind(meta, df)
-  invisible(ncdf::close.ncdf(nc))
-  return(alldf)
+  return(cbind(meta, df))
 }
 
 convert_time <- function(n = NULL, isoTime = NULL,
