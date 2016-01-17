@@ -2,7 +2,7 @@ language: r
 
 r_binary_packages:
 - dplyr
-- ncdf
+- ncdf4
 
 notifications:
   email:
