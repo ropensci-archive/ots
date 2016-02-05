@@ -36,7 +36,7 @@ convert_time <- function(n = NULL, isoTime = NULL,
     args <- cmp(list(n = n, isoTime = isoTime, units = units))
     res <- GET(paste0(pu(url), '/erddap/convert/time.txt'), query = args, ...)
     stop_for_status(res)
-    content(res, "text")
+    content(res, "text", encoding = "UTF-8")
   }
 }
 

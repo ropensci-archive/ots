@@ -64,7 +64,7 @@
 hot <- function(){
   url <- 'http://hahana.soest.hawaii.edu/hot/products/HOT_surface_CO2.txt'
   res <- GET(url)
-  out <- process_hot(content(res, "text"))
+  out <- process_hot(content(res, "text", encoding = "UTF-8"))
   structure(out, class = "hot")
 }
 
