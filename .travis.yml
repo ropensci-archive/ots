@@ -1,8 +1,13 @@
 language: r
+sudo: required
+
+apt_packages:
+  - libnetcdf-dev
+  - netcdf-bin
 
 r_packages:
-- dplyr
-- ncdf4
+  - dplyr
+  - ncdf4
 
 notifications:
   email:
