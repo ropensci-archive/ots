@@ -6,3 +6,4 @@
 ^appveyor\.yml$
 ^CONDUCT\.md$
 ^NEWS\.md$
+^codemeta\.json$
