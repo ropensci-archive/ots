@@ -74,4 +74,3 @@ head(res$headers)
 \references{
 \url{http://esapubs.org/archive/ecol/E094/245/metadata.php}
 }
-

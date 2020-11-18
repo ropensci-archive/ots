@@ -2,10 +2,6 @@
 % Please edit documentation in R/ots-package.R
 \docType{package}
 \name{ots-package}
-\alias{ots}
 \alias{ots-package}
+\alias{ots}
 \title{ots, an R client for various ocean time series datasets.}
-\description{
-ots, an R client for various ocean time series datasets.
-}
-

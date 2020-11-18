@@ -36,4 +36,3 @@ res$vars
 \references{
 \url{http://bats.bios.edu/}
 }
-

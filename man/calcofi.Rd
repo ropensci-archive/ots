@@ -34,4 +34,3 @@ res$data \%>\%
  head
 }
 }
-

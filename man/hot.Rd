@@ -70,4 +70,3 @@ res$vars
 res$citation
 }
 }
-

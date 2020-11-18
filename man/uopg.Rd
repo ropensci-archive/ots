@@ -4,8 +4,12 @@
 \alias{uopg}
 \title{Get data from the Upper Ocean Proccesses Group (UOPG).}
 \usage{
-uopg(dataset = "smile", type = "meteorology", path = "~/.ots/uopg",
-  overwrite = TRUE)
+uopg(
+  dataset = "smile",
+  type = "meteorology",
+  path = "~/.ots/uopg",
+  overwrite = TRUE
+)
 }
 \arguments{
 \item{dataset}{A dataset code name, one of arabian_sea, asrex_91, asrex_93, biowatt, cmo,
@@ -50,4 +54,3 @@ lotus_met$metadata
 \references{
 \url{http://uop.whoi.edu/archives/dataarchives.html}
 }
-

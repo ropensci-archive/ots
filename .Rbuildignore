@@ -7,3 +7,5 @@
 ^CONDUCT\.md$
 ^NEWS\.md$
 ^codemeta\.json$
+Makefile
+.github
