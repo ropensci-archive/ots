@@ -3,8 +3,7 @@ ots
 
 
 
-[![Build Status](https://api.travis-ci.org/ropensci/ots.png)](https://travis-ci.org/ropensci/ots)
-[![Build status](https://ci.appveyor.com/api/projects/status/cad6l6aibktrvau9/branch/master?svg=true)](https://ci.appveyor.com/project/sckott/ots/branch/master)
+[![R-check](https://github.com/ropensci/ots/workflows/R-check/badge.svg)](https://github.com/ropensci/ots/actions?query=workflow%3AR-check)
 
 `ots` is an R client to retrieve data from various ocean time series datasets, including:
 
@@ -37,78 +36,24 @@ library("ots")
 
 ```r
 library('dplyr')
-tbl_df(bats_zooplankton()$data) %>% 
+tbl_df(bats("zooplankton")$data) %>% 
   filter(sieve_size > 1000) %>% 
   group_by(cruise) %>% 
   summarise(mean_water_vol = mean(water_vol))
-#> Source: local data frame [227 x 2]
-#> 
-#>    cruise mean_water_vol
-#> 1   10067       304.2962
-#> 2   10068       457.0975
-#> 3   10069       712.3630
-#> 4   10070       410.1900
-#> 5   10071       433.7887
-#> 6   10072       665.6040
-#> 7   10073       818.4642
-#> 8   10074      1038.6833
-#> 9   10075       577.8882
-#> 10  10076       659.7350
-#> ..    ...            ...
 ```
 
 ## BATS - Zooplankton dataset
 
 
 ```r
-bats_zooplankton()
-#> BATS: zooplankton data
-#> Metadata: output$meta
-#> Variables: output$vars
-#> 
-#>    cruise     date tow lat_deg lat_min lon_deg lon_min time_in time_out
-#> 1   20066 19940406   1      31   33.89      63   52.45    1558     1626
-#> 2   20066 19940406   1      31   33.89      63   52.45    1558     1626
-#> 3   20066 19940406   1      31   33.89      63   52.45    1558     1626
-#> 4   20066 19940406   1      31   33.89      63   52.45    1558     1626
-#> 5   20066 19940406   1      31   33.89      63   52.45    1558     1626
-#> 6   20066 19940406   2      31   33.45      63   52.19    1625     1651
-#> 7   20066 19940406   2      31   33.45      63   52.19    1625     1651
-#> 8   20066 19940406   2      31   33.45      63   52.19    1625     1651
-#> 9   20066 19940406   2      31   33.45      63   52.19    1625     1651
-#> 10  20066 19940406   2      31   33.45      63   52.19    1625     1651
-#> ..    ...      ... ...     ...     ...     ...     ...     ...      ...
-#> Variables not shown: duration_min (int), depth_max (int), water_vol (dbl),
-#>      sieve_size (int), weight_wet (dbl), weight_dry (dbl), weight_wet_vol
-#>      (dbl), dry_wet_vol (dbl), tot_weight_wet_vol (dbl),
-#>      tot_weight_dry_vol (dbl), weight_wet_vol_200 (dbl),
-#>      weight_dry_vol_200 (dbl), tot_weight_wet_vol_200 (dbl),
-#>      tot_weight_dry_vol_200 (dbl)
+bats("zooplankton")
 ```
 
 ## BATS - Production dataset
 
 
 ```r
-bats_production()
-#> BATS: primary/bacterial production data
-#> Metadata: output$meta
-#> Variables: output$vars
-#> 
-#>           id   yymmdd     decy    lat   long dep1 dep2  salt  lt1   lt2
-#> 1  100038101 19881218 1988.965 31.669 64.049    5    5 -9.99 7.21  6.59
-#> 2  100038102 19881218 1988.965 31.669 64.049   25   25 -9.99 6.00 -9.90
-#> 3  100038103 19881218 1988.965 31.669 64.049   50   50 -9.99 3.62  2.69
-#> 4  100038104 19881218 1988.965 31.669 64.049   75   75 -9.99 2.21  1.40
-#> 5  100038105 19881218 1988.965 31.669 64.049  100  100 -9.99 1.15  1.78
-#> 6  100038106 19881218 1988.965 31.669 64.049  120  120 -9.99 1.29  0.75
-#> 7  100048101 19890127 1989.074 31.695 64.252   18   18 -9.99 3.77  3.75
-#> 8  100048102 19890127 1989.074 31.695 64.252   41   41 -9.99 3.66  3.55
-#> 9  100048103 19890127 1989.074 31.695 64.252   62   62 -9.99 2.17  2.33
-#> 10 100048104 19890127 1989.074 31.695 64.252   81   81 -9.99 0.93  0.92
-#> ..       ...      ...      ...    ...    ...  ...  ...   ...  ...   ...
-#> Variables not shown: lt3 (dbl), dark (dbl), t0 (dbl), pp (dbl), thy1
-#>      (dbl), thy2 (dbl), thy3 (dbl), thy (dbl)
+bats("production")
 ```
 
 ## HOT dataset
@@ -116,26 +61,6 @@ bats_production()
 
 ```r
 hot()
-#> HOT data
-#> Metadata: output$meta
-#> Variables: See Details section in ?hot
-#> 
-#>    cruise days      date   temp    sal phos  sil     DIC     TA   nDIC
-#> 1       1   30 31-Oct-88 26.283 35.186 0.08 0.71 1963.91 2319.5 1953.5
-#> 2       2   62 02-Dec-88 25.659 34.984 0.09 0.99 1958.94 2304.9 1959.8
-#> 3       3   99 08-Jan-89 24.610 35.028 0.07 0.93 1963.77 2305.0 1962.2
-#> 4       4  148 26-Feb-89 23.479 34.883 0.09 0.88 1957.80 2295.5 1964.4
-#> 5       5  177 27-Mar-89 24.278 34.735 0.12 2.01 1946.33 2283.0 1961.2
-#> 6       6  229 18-May-89 23.870 35.019 0.09 1.42 1972.90 2306.7 1971.8
-#> 7       7  266 24-Jun-89 25.755 34.600 0.14 0.92 1939.00 2275.0 1961.4
-#> 8       8  301 29-Jul-89 25.358 34.949 0.10 1.49 1965.65 2301.8 1968.5
-#> 9       9  327 24-Aug-89 26.202 34.675 0.11 1.75 1949.00 2285.4 1967.3
-#> 10     10  356 22-Sep-89 26.330 34.775 0.07 0.90 1944.90 2287.1 1957.5
-#> ..    ...  ...       ...    ...    ...  ...  ...     ...    ...    ...
-#> Variables not shown: nTA (dbl), pHmeas_25C (dbl), pHmeas_insitu (dbl),
-#>      pHcalc_25C (dbl), pHcalc_insitu (dbl), pCO2calc_insitu (dbl),
-#>      pCO2calc_20C (dbl), aragsatcalc_insitu (dbl), calcsatcalc_insitu
-#>      (dbl), freeCO2_insitu (dbl), carbonate_insitu (dbl), notes (chr)
 ```
 
 ## Channels Islands National Park kelp data
@@ -143,23 +68,6 @@ hot()
 
 ```r
 kelp("benthic_cover")
-#> <Kelp data>
-#> Dataset headers: output$headers
-#> Dataset variables: output$vars
-#> 
-#>    site year species       date replicates pointsperreplicate covermean
-#> 1     1 1982    1001         NA         NA                 NA        NA
-#> 2     1 1982    2001 2-May-1982         25                 20       3.6
-#> 3     1 1982    2003         NA         NA                 NA        NA
-#> 4     1 1982    2007 2-May-1982         25                 20       0.4
-#> 5     1 1982    2008         NA         NA                 NA        NA
-#> 6     1 1982    2014         NA         NA                 NA        NA
-#> 7     1 1982    2017         NA         NA                 NA        NA
-#> 8     1 1982    3001 2-May-1982         25                 20      52.6
-#> 9     1 1982    3002 2-May-1982         25                 20       2.6
-#> 10    1 1982    3003 2-May-1982         25                 20       7.2
-#> ..  ...  ...     ...        ...        ...                ...       ...
-#> Variables not shown: coverse (dbl)
 ```
 
 ## CALCOFI data
@@ -167,34 +75,6 @@ kelp("benthic_cover")
 
 ```r
 calcofi('hydro_cast')
-#> <CALCOFI data>
-#> Metadata: none yet
-#>    cst_cnt         cruise_id      cruz_sta dbsta_id
-#> 1        1 1949-03-01-C-31CR 9.629490e-311  5400560
-#> 2        2 1949-03-01-C-31CR 9.629490e-311  5200750
-#> 3        3 1949-03-01-C-31CR 9.629490e-311  5100850
-#> 4        4 1949-03-01-C-31CR 9.629490e-311  5000950
-#> 5        5 1949-03-01-C-31CR 9.629490e-311  5001040
-#> 6        6 1949-03-01-C-31CR 9.629490e-311  4901140
-#> 7        7 1949-03-01-C-31CR 9.629490e-311  5671460
-#> 8        8 1949-03-01-C-31CR 9.629490e-311  5671360
-#> 9        9 1949-03-01-C-31CR 9.629491e-311  5801270
-#> 10      10 1949-03-01-C-31CR 9.629491e-311  5901170
-#> ..     ...               ...           ...      ...
-#> Variables not shown: cast_id (chr), sta_id (chr), quarter (int), sta_code
-#>      (chr), distance (dbl), date (chr), year (int), month (int),
-#>      julian_date (int), julian_day (int), time (chr), lat_dec (dbl),
-#>      lat_deg (int), lat_min (dbl), lat_hem (chr), lon_dec (dbl), lon_deg
-#>      (int), lon_min (dbl), lon_hem (chr), rpt_line (dbl), st_line (dbl),
-#>      ac_line (dbl), rpt_sta (dbl), st_station (dbl), ac_sta (dbl),
-#>      bottom_d (int), secchi (int), forelu (int), ship_name (chr),
-#>      ship_code (chr), data_type (chr), order_occ (int), event_num (int),
-#>      cruz_leg (int), orig_sta_id (chr), data_or (chr), cruz_num (chr),
-#>      intchl (dbl), intc14 (dbl), inc_str (chr), inc_end (chr), pst_lan
-#>      (chr), civil_t (chr), timezone (int), wave_dir (int), wave_ht (int),
-#>      wave_prd (int), wind_dir (int), wind_spd (int), barometer (dbl),
-#>      dry_t (dbl), wet_t (dbl), wea (int), cloud_typ (int), cloud_amt
-#>      (int), visibility (int)
 ```
 
 ## UOPG data
@@ -204,23 +84,6 @@ Various datasets available through this source - in this example getting data fr
 
 ```r
 (biowatt_met <- uopg(dataset = 'biowatt', type = "meteorology"))
-#> <UOPG data : biowatt> Total: [50649 rows]; Datasets: [3]
-#> Metadata: output$meta
-#> First dataset [1]:
-#> 
-#>          V1     V2     V3       V4     V5     V6     V7      V8      V9
-#> 1  59.79427 16.462 42.318 1027.680 18.777 -6.695 -0.087 597.140 -999.99
-#> 2  59.79948 16.564 47.506 1027.979 18.773 -6.638 -0.296 641.244 -999.99
-#> 3  59.80469 16.698 45.004 1027.680 18.773 -6.792  0.071 539.530 -999.99
-#> 4  59.80990 16.611 48.086 1027.680 18.771 -7.056 -0.465 649.147 -999.99
-#> 5  59.81510 16.586 47.506 1027.480 18.759 -6.958 -0.241 511.428 -999.99
-#> 6  59.82031 16.435 48.260 1027.780 18.762 -6.872  0.096 373.442 -999.99
-#> 7  59.82552 16.340 43.019 1027.480 18.753 -6.014 -0.107 316.316 -999.99
-#> 8  59.83073 16.387 48.492 1027.381 18.761 -6.208  0.250 410.810 -999.99
-#> 9  59.83594 16.497 46.925 1027.281 18.760 -6.176  0.254 400.155 -999.99
-#> 10 59.84115 16.358 49.592 1027.680 18.759 -5.610  0.348 232.979 -999.99
-#> ..      ...    ...    ...      ...    ...    ...    ...     ...     ...
-#> Variables not shown: V10 (dbl)
 ```
 
 ## More coming...
@@ -230,6 +93,6 @@ Various datasets available through this source - in this example getting data fr
 * Please [report any issues or bugs](https://github.com/ropensci/ots/issues).
 * License: MIT
 * Get citation information for `ots` in R doing `citation(package = 'ots')`
-* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+* Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
-[![ropensci](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
+[![ropensci](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

@@ -6,11 +6,12 @@ knitr::opts_chunk$set(
   comment = "#>",
   collapse = TRUE,
   warning = FALSE, 
-  message = FALSE
+  message = FALSE,
+  eval = FALSE
 )
 ```
 
-
+[![R-check](https://github.com/ropensci/ots/workflows/R-check/badge.svg)](https://github.com/ropensci/ots/actions?query=workflow%3AR-check)
 
 `ots` is an R client to retrieve data from various ocean time series datasets, including:
 
@@ -40,7 +41,7 @@ library("ots")
 
 ```{r}
 library('dplyr')
-tbl_df(bats_zooplankton()$data) %>% 
+tbl_df(bats("zooplankton")$data) %>% 
   filter(sieve_size > 1000) %>% 
   group_by(cruise) %>% 
   summarise(mean_water_vol = mean(water_vol))
@@ -49,13 +50,13 @@ tbl_df(bats_zooplankton()$data) %>%
 ## BATS - Zooplankton dataset
 
 ```{r}
-bats_zooplankton()
+bats("zooplankton")
 ```
 
 ## BATS - Production dataset
 
 ```{r}
-bats_production()
+bats("production")
 ```
 
 ## HOT dataset
