@@ -5,11 +5,11 @@ Description: Interact with various ocean time series 'datasets', including
     BATS, HOT, and more. Package focuses on data retrieval only. All functions
     return a data.frame for easy downstream use for plots, vizualization,
     analysis.
-Version: 0.0.8.9900
+Version: 0.1.1.91
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
-URL: https://docs.ropensci.org/ots, https://github.com/ropensci/ots
+URL: https://docs.ropensci.org/ots/, https://github.com/ropensci/ots
 BugReports: https://github.com/ropensci/ots/issues
 Encoding: UTF-8
 Imports:
