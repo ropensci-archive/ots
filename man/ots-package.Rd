@@ -4,4 +4,7 @@
 \name{ots-package}
 \alias{ots-package}
 \alias{ots}
-\title{ots, an R client for various ocean time series datasets.}
+\title{ots}
+\description{
+ots, an R client for various ocean time series datasets.
+}

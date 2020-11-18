@@ -1,5 +1,5 @@
-#' ots, an R client for various ocean time series datasets.
-#'
+#' @title ots
+#' @description ots, an R client for various ocean time series datasets.
 #' @importFrom methods is
 #' @importFrom stats setNames
 #' @importFrom utils untar read.table read.csv head
